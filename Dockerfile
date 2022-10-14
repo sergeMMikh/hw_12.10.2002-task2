@@ -1,6 +1,6 @@
 FROM python:3.10
 
-RUN apt install -y python3-pip #pip install --upgrade pip
+RUN pip install --upgrade pip
 
 COPY ./requirements.txt /src/requirements.txt
 RUN pip3 install --no-cache-dir --upgrade -r /src/requirements.txt
