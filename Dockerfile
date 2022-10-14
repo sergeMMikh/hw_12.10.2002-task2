@@ -1,15 +1,17 @@
-FROM python:3
+FROM python:3.10
+
+RUN sudo apt install -y python3-pip #pip install --upgrade pip
 
 COPY ./requirements.txt /src/requirements.txt
 RUN pip3 install --no-cache-dir --upgrade -r /src/requirements.txt
 
 COPY . /src
 
-EXPOSE 7788
+EXPOSE 8000
 
 WORKDIR src
 
 RUN python3 manage.py makemigrations
 RUN python3 manage.py migrate
 
-CMD ["python3", "manage.py", "runserver", "--host", "0.0.0.0", "--port", "7788"]
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
